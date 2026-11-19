@@ -1,4 +1,4 @@
-OverTheWire - Walktrhoug
+OverTheWire Bandit - Walktrhoug
 
 level0 - Do SSH to bandit.labs.overthewire.org especifying the port and de login name:
 ~ ssh bandit.labs.overthewire.org -p 2220 -l bandit0
