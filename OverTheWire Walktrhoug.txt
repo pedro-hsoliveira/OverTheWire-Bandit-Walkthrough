@@ -1,0 +1,80 @@
+OverTheWire - Walktrhoug
+
+level0 - Do SSH to bandit.labs.overthewire.org especifying the port and de login name:
+~ ssh bandit.labs.overthewire.org -p 2220 -l bandit0
+put the password. You're in
+
+level 0 -> 1 - Find the readme file, use cat to display the readme content:
+~ cat readme
+and the file content is:
+"
+Congratulations on your first steps into the bandit game!!
+Please make sure you have read the rules at https://overthewire.org/rules/
+If you are following a course, workshop, walkthrough or other educational activity,
+please inform the instructor about the rules as well and encourage them to
+contribute to the OverTheWire community so we can keep these games free!
+
+The password you are looking for is: 6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR
+"
+
+Acessing the ip bandit with ssh and login bandit1 and password that has contained in readme of past level, we acess the level 1
+
+level 1 -> level 2 - The password of level 2 is is a file called "-", then, the linux terminal cannot distinguish if it is start of a flag or a directory name. So, the solution is use "./" to especify cat command that is a filename:
+~ cat ./-
+OK, after this, the file content is the password of the next level:
+" PK8fYLZg2hnHSz83plBL1iEPKdD3QToB "
+
+level 2 -> level 3 - The file is a file called "--spaces in this filename--"
+the solution of this level is very similar to the past level. in this case, we can show to the cat command file name with spaces is just one string usign '' in start and finish of filename:
+~cat ./'--spaces in this filename--'
+Then, return the password of next level:
+" 7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME "
+
+level 3 -> level 4 - Have a hidden file in inhere directory.
+using ls we can discover the inhere directory, using cd we can enter in inhere directory.
+~ ls
+" inhere "
+~ cd inhere
+" bandit3@bandit:~/inhere "
+In this directory, the ls command don't return nothing, i.e., if exists a file here, he's hidden.
+We can use the command find to find all the files and directories in this part of level:
+~ find
+"
+.
+./...Hiding-From-You
+"
+Voilá, the hidden file. Using cat to read:
+" xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq "
+
+level 4 -> level 5 - In this level, the password is in only human-redable file in inhere directory. Entering in inhere directory, and use ls:
+~ ls
+"-file00  -file01  -file02  -file03  -file04  -file05  -file06  -file07  -file08  -file09"
+Using cat command to read all the files, find the password in file07:
+~ cat ./-file07
+" 6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG "
+
+level 5 -> level 6 - The password file follow 3 requirements:
+
+-human-readable
+-1033 bytes in size
+-not executable
+
+So, we can use find command in the inhere directory to filter the files that have only 1033 bytes of size, using the -size flag with suffix 'c' to especify that this size is in bytes:
+~ find -size 1033c
+" ./maybehere07/.file2 "
+Just only one file with 1033 bytes of size. Open him with cat we have the password:
+" pXa26xhMWaC2SvDotA4r9EgZkulOeSBW "
+
+level 6 -> 7 - In this level, has the file is in somewhere in the server and follow the requirements:
+-owned by user bandit7
+-owned by group bandit6
+-33 bytes in size
+We can use Find command with the flags -user, -group, -size.
+But, in initial directory, the subfiles dont existing. This is the cause he say "somewhere on the server". So, we can navigate to the most top directory we have permission using cd ..
+In $/, we can use find command with flags to search the password, but very files we dont have permsission will pollute our screen, so, use 2>/dev/null, to redirect mensagens from stderror(2 channel) to dev/null and exclude this desnecessary mensages.
+~ find -user bandit7 -group bandit6 -size 33c 2>/dev/null
+" ./var/lib/dpkg/info/bandit7.password "
+We find the password directory. Using cat to read.
+" Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3 "
+
+level 7 -> 8 - 
