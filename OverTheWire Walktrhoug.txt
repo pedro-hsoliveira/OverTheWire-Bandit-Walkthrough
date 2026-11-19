@@ -77,4 +77,8 @@ In $/, we can use find command with flags to search the password, but very files
 We find the password directory. Using cat to read.
 " Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3 "
 
-level 7 -> 8 - 
+level 7 -> 8 - In this level, we have a data.txt archive, using cat to read this, several words and respective passwords appear. So, we use grep to find in the file the password of millionth.
+~ grep -F millionth ./data.txt
+" millionth	VR1ljMayciFxbnUokuQmJFw6QC9VKtub "
+So, the password is:
+" VR1ljMayciFxbnUokuQmJFw6QC9VKtub "
