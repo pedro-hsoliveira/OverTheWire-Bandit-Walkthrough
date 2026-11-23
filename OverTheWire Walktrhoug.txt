@@ -1,6 +1,6 @@
 OverTheWire Bandit - Walktrhoug
 
-level0 - Do SSH to bandit.labs.overthewire.org especifying the port and de login name:
+level0 - Do SSH to bandit.labs.overthewire.org especifying the port and the login name:
 ~ ssh bandit.labs.overthewire.org -p 2220 -l bandit0
 put the password. You're in
 
@@ -82,3 +82,14 @@ level 7 -> 8 - In this level, we have a data.txt archive, using cat to read this
 " millionth	VR1ljMayciFxbnUokuQmJFw6QC9VKtub "
 So, the password is:
 " VR1ljMayciFxbnUokuQmJFw6QC9VKtub "
+
+level 8 -> 9 - In this level, we have a data.txt archive, using cat to read, several passwords will appear. So, the level say that just once password is the next level password.
+So, we will use piping with sort and uniq with -u flag(to return the just once value). 
+~ sort data.txt | uniq -u
+" EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl "
+
+level 9 -> 10 - This level is very strange case of difficulty level. If we use control+shift+F, and search for "=", we find a characteristic password string.
+
+" B0s2khmbT9u0geKuOoVGW3JZKhndE3BG "
+
+This is so easy. So, we will do this for the hardest form.
